@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   gaData() {
-    console.log(this.state.user._token.accessToken);
+    console.log("here", this.state.user._token.accessToken);
     // var xhr = new XMLHttpRequest();
     // xhr.open('GET',
     //     'https://www.googleapis.com/auth/analytics' +
