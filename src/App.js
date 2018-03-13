@@ -21,16 +21,17 @@ class App extends Component {
     console.log(err);
   }
 
-  // gaData() {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open('GET',
-  //       'https://www.googleapis.com/auth/analytics' +
-  //       'access_token=' + params['access_token']);
-  //   xhr.onreadystatechange = function (e) {
-  //     console.log(xhr.response);
-  //   };
-  //   xhr.send(null);
-  // }
+  gaData() {
+    console.log(this.state.user._token.accessToken);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET',
+    //     'https://www.googleapis.com/auth/analytics' +
+    //     'access_token=' + this.state.user._token.accessToken);
+    // xhr.onreadystatechange = function (e) {
+    //   console.log(xhr.response);
+    // };
+    // xhr.send(null);
+  }
 
   render() {
     return (
@@ -48,7 +49,7 @@ class App extends Component {
         >
           Login with G
         </SocialButton>
-        {/* <button onClick={() => this.gaData}>get ga data</button> */}
+        <button onClick={() => this.gaData}>get ga data</button>
       </div>
     );
   }
