@@ -9,6 +9,8 @@ class App extends Component {
     this.state = {
       user: ''
     }
+    this.handleSocialLogin = this.handleSocialLogin.bind(this);
+    this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
   }
 
   handleSocialLogin(user) {
@@ -42,8 +44,8 @@ class App extends Component {
         <SocialButton
           provider="google"
           appId="830991144249-dnd3pivonjjfg5mp2ark8idncvarhmmj.apps.googleusercontent.com"
-          onLoginSuccess={this.handleSocialLogin}
-          onLoginFailure={this.handleSocialLoginFailure}
+          onLoginSuccess={() => this.handleSocialLogin()}
+          onLoginFailure={() => this.handleSocialLoginFailure()}
           scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/analytics"
         >
           Login with G
