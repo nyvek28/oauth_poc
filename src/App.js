@@ -13,7 +13,7 @@ class App extends Component {
 
   handleSocialLogin(user) {
     this.setState({
-      user
+      user: user
     });
   }
 
