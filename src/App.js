@@ -4,14 +4,33 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: ''
+    }
+  }
 
   handleSocialLogin(user) {
-    console.log(user);
+    this.setState({
+      user
+    });
   }
 
   handleSocialLoginFailure(err) {
     console.log(err);
   }
+
+  // gaData() {
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open('GET',
+  //       'https://www.googleapis.com/auth/analytics' +
+  //       'access_token=' + params['access_token']);
+  //   xhr.onreadystatechange = function (e) {
+  //     console.log(xhr.response);
+  //   };
+  //   xhr.send(null);
+  // }
 
   render() {
     return (
@@ -29,6 +48,7 @@ class App extends Component {
         >
           Login with G
         </SocialButton>
+        {/* <button onClick={() => this.gaData}>get ga data</button> */}
       </div>
     );
   }
