@@ -27,7 +27,7 @@
   to { transform: rotate(360deg); }
 }
 
-button {
+/* button {
   height: 70px;
   width: 250px;
   font-size: 18px;
@@ -36,4 +36,4 @@ button {
   color: white;
   cursor: pointer;
   margin-top: 10vh;
-}
+} */
