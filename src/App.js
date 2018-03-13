@@ -48,7 +48,9 @@ class App extends Component {
         >
           Login with G
         </SocialButton>
-        <button onClick={this.gaData.bind(this)}>get ga data</button>
+        <br /><br />
+        {this.state.user._token.accessToken ? <button onClick={this.gaData.bind(this)}>get ga data</button> : null}
+        
       </div>
     );
   }
