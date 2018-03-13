@@ -22,15 +22,14 @@ class App extends Component {
   }
 
   gaData() {
-    console.log("here", this.state.user._token.accessToken);
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET',
-    //     'https://www.googleapis.com/auth/analytics' +
-    //     'access_token=' + this.state.user._token.accessToken);
-    // xhr.onreadystatechange = function (e) {
-    //   console.log(xhr.response);
-    // };
-    // xhr.send(null);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',
+        'https://www.googleapis.com/auth/analytics' +
+        'access_token=' + this.state.user._token.accessToken);
+    xhr.onreadystatechange = function (e) {
+      console.log(xhr.response);
+    };
+    xhr.send(null);
   }
 
   render() {
