@@ -25,7 +25,6 @@ class App extends Component {
           appId="830991144249-dnd3pivonjjfg5mp2ark8idncvarhmmj.apps.googleusercontent.com"
           onLoginSuccess={this.handleSocialLogin}
           onLoginFailure={this.handleSocialLoginFailure}
-          scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/analytics.readonly"
         >
           Login with G
         </SocialButton>
