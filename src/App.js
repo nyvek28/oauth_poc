@@ -22,14 +22,18 @@ class App extends Component {
   }
 
   gaData() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',
-        'https://www.googleapis.com/auth/analytics?' +
-        'access_token=' + this.state.user._token.accessToken);
-    xhr.onreadystatechange = function (e) {
-      console.log(xhr.response);
-    };
-    xhr.send(null);
+    if (this.state.user._token.accessToken) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET',
+          'https://www.googleapis.com/auth/analytics?' +
+          'access_token=' + this.state.user._token.accessToken);
+      xhr.onreadystatechange = function (e) {
+        console.log(xhr.response);
+      };
+      xhr.send(null);
+    } else {
+      alert("nope");
+    }
   }
 
   render() {
@@ -49,7 +53,7 @@ class App extends Component {
           Login with G
         </SocialButton>
         <br /><br />
-        {this.state.user._token.accessToken ? <button onClick={this.gaData.bind(this)}>get ga data</button> : null}
+        <button onClick={this.gaData.bind(this)}>get ga data</button>
         
       </div>
     );
