@@ -11,6 +11,7 @@ class App extends Component {
       user: '',
       accounts: []
     }
+    this.handleFetchAccounts = this.handleFetchAccounts.bind(this);
   }
 
   handleSocialLogin(user) {
@@ -39,7 +40,7 @@ class App extends Component {
       .then((res) => this.handleFetchAccounts(res.data.items.map(item => ({
         name: item.name,
         id: item.id
-      }))).bind(this));
+      }))));
   }
 
 
