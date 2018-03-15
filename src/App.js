@@ -6,6 +6,15 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: ''
+    }
+  }
+
+  handleSocialLogin(user) {
+    this.setState({
+      user: user
+    });
   }
 
   handleSocialLoginFailure(err) {
@@ -22,6 +31,7 @@ class App extends Component {
     xhr.send(null);
   }
 
+
   render() {
     return (
       <div className="App">
@@ -29,6 +39,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <SocialButton
+          provider="google"
+          appId="830991144249-dnd3pivonjjfg5mp2ark8idncvarhmmj.apps.googleusercontent.com"
+          onLoginSuccess={this.handleSocialLogin.bind(this)}
+          onLoginFailure={this.handleSocialLoginFailure.bind(this)}
+          scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/analytics"
+        >
+          Login with G
+        </SocialButton>
+        <br /><br />
         <button onClick={this.gaData.bind(this)}>get ga data</button>
         
       </div>
