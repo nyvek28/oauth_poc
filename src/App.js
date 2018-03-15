@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import SocialButton from './SocialButton';
 import logo from './logo.svg';
 import './App.css';
@@ -22,13 +23,15 @@ class App extends Component {
   }
 
   gaData() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',
-        'https://www.googleapis.com/analytics/v3/management/accounts')
-    xhr.onreadystatechange = function (e) {
-      console.log(xhr.response);
-    };
-    xhr.send(null);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET',
+    //     'https://www.googleapis.com/analytics/v3/management/accounts')
+    // xhr.onreadystatechange = function (e) {
+    //   console.log(xhr.response);
+    // };
+    // xhr.send(null);
+    axios.get('https://www.googleapis.com/analytics/v3/management/accounts')
+      .then(function(response) { console.log(response) });
   }
 
 
