@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import google from './google.png';
+import analytics from './analytics.png';
 import SocialButton from './SocialButton';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -78,10 +79,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
         <SocialButton
           provider="google"
           appId="906758454500-hom380g9h0spqebdgln880tn1ua8v33n.apps.googleusercontent.com"
@@ -89,11 +86,15 @@ class App extends Component {
           onLoginFailure={this.handleSocialLoginFailure.bind(this)}
           scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/analytics"
         >
-          Login with G
+          <img src={google} />
         </SocialButton>
         <br /><br />
-        <button onClick={this.gaData.bind(this)}>get ga data</button>
-
+        {this.state.user !== ""
+          ? <button onClick={this.gaData.bind(this)}>
+            <img src={analytics} className="analytics" />
+          </button>
+          : null
+        }
       </div>
     );
   }
