@@ -30,7 +30,7 @@ class App extends Component {
     //   console.log(xhr.response);
     // };
     // xhr.send(null);
-    axios.get('https://www.googleapis.com/analytics/v3/management/accounts')
+    axios.get('https://www.googleapis.com/analytics/v3/management/accounts', {headers: {"Bearer": this.state.user._token.accessToken}})
       .then(function(response) { console.log(response) });
   }
 
