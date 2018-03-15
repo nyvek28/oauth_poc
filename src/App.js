@@ -9,9 +9,18 @@ class App extends Component {
     super(props);
     this.state = {
       user: '',
-      accounts: []
+      accounts: [],
+      properties: []
     }
     this.handleFetchAccounts = this.handleFetchAccounts.bind(this);
+  }
+
+  gapiRequest(url) {
+    return axios.get(url, {
+      headers: {
+        "authorization": "Bearer " + this.state.user._token.accessToken
+      }
+    })
   }
 
   handleSocialLogin(user) {
@@ -27,20 +36,29 @@ class App extends Component {
   handleFetchAccounts(accounts) {
     this.setState({
       accounts
-    });
+    }, this.handleFetchProperties(this.state.accounts));
+  }
+
+  handleFetchProperties(properties) {
+    properties.map(item => {
+      this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts/' + item.id + '/webproperties')
+        .then((res) => this.setState({
+          properties: res.data.items.map(item => ({
+            name: item.name,
+            id: item.id,
+            accountId: item.accountId
+          }))
+        })
+        )
+    })
   }
 
   gaData() {
-    axios.get('https://www.googleapis.com/analytics/v3/management/accounts',
-      {
-        headers: {
-          "authorization": "Bearer " + this.state.user._token.accessToken
-        }
-      })
+    this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
       .then((res) => this.handleFetchAccounts(res.data.items.map(item => ({
         name: item.name,
         id: item.id
-      }))));
+      }))))
   }
 
 
