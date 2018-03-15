@@ -55,10 +55,14 @@ class App extends Component {
 
   gaData() {
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
-      .then((res) => this.handleFetchAccounts(res.data.items.map(item => ({
-        name: item.name,
-        id: item.id
-      }))))
+    .then((accountsResponse) => {
+      accountsResponse.data.items.forEach((account) => {
+        this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties`)
+        .then((propertiesResponse) => {
+          console.log(propertiesResponse);
+        })
+      })
+    })
   }
 
 
@@ -80,7 +84,7 @@ class App extends Component {
         </SocialButton>
         <br /><br />
         <button onClick={this.gaData.bind(this)}>get ga data</button>
-        
+
       </div>
     );
   }
