@@ -75,7 +75,7 @@ class App extends Component {
         </header>
         <SocialButton
           provider="google"
-          appId="830991144249-dnd3pivonjjfg5mp2ark8idncvarhmmj.apps.googleusercontent.com"
+          appId="906758454500-hom380g9h0spqebdgln880tn1ua8v33n.apps.googleusercontent.com"
           onLoginSuccess={this.handleSocialLogin.bind(this)}
           onLoginFailure={this.handleSocialLoginFailure.bind(this)}
           scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/analytics"
