@@ -54,10 +54,12 @@ class App extends Component {
   }
 
   gaData() {
+    let gaAccounts
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
     .then((accountsResponse) => {
       console.log('Accounts:', accountsResponse);
-      accountsResponse.data.items.forEach((account) => {
+      gaAccounts = accountsResponse.data.items.map(({ id, name }) => { id, name })
+      gaAccounts.forEach((account) => {
         this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties`)
         .then((propertiesResponse) => {
           console.log('Properties:', propertiesResponse);
