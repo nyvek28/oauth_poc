@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: ''
+      user: '',
+      accounts: []
     }
   }
 
@@ -22,21 +23,23 @@ class App extends Component {
     console.log(err);
   }
 
+  handleFetchAccounts(accounts) {
+    this.setState({
+      accounts
+    });
+  }
+
   gaData() {
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET',
-    //     'https://www.googleapis.com/analytics/v3/management/accounts')
-    // xhr.onreadystatechange = function (e) {
-    //   console.log(xhr.response);
-    // };
-    // xhr.send(null);
     axios.get('https://www.googleapis.com/analytics/v3/management/accounts',
       {
         headers: {
           "authorization": "Bearer " + this.state.user._token.accessToken
         }
       })
-      .then(function(response) { console.log(response) });
+      .then((res) => this.handleFetchAccounts(res.data.items.map(item => ({
+        name: item.name,
+        id: item.id
+      }))).bind(this));
   }
 
 
