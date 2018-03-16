@@ -53,7 +53,7 @@ class App extends Component {
           propertiesResponse.data.items.forEach((property) => {
             this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties/${property.id}/profiles`)
             .then((viewsResponse) => {
-              this.setState({ views: viewsResponse.data }, () => setTimeout(() => console.log(this.state), 3000))
+              this.setState({ views: viewsResponse.data })
             })
           })
         })
@@ -81,11 +81,14 @@ class App extends Component {
           </button>
           : null
         }
-        <p>Accounts: </p>
-        <select>
-          <option>hey</option>
-          <option>test</option>
-        </select>
+        {this.state.accounts.length !== 0
+          ? <div><p>Accounts: </p>
+            <select>
+              {this.state.accounts.items.map(item => {<options id={item.id}>{item.id} - {item.name}</options>})}
+            </select></div>
+          : null
+        }
+        
       </div>
     );
   }
