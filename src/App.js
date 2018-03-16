@@ -53,7 +53,7 @@ class App extends Component {
           propertiesResponse.data.items.forEach((property) => {
             this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties/${property.id}/profiles`)
             .then((viewsResponse) => {
-              this.setState({ views: viewsResponse.data }, console.log(this.state))
+              this.setState({ views: viewsResponse.data }, setTimeout(3000, console.log(this.state)))
             })
           })
         })
