@@ -45,7 +45,6 @@ class App extends Component {
         }
         gaAccounts.push(account);
       })
-      console.log("hereee", gaAccounts);
       gaAccounts.forEach((account) => {
         this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties`)
         .then((propertiesResponse) => {
