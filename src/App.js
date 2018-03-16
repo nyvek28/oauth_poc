@@ -13,7 +13,6 @@ class App extends Component {
       accounts: [],
       properties: []
     }
-    this.handleFetchAccounts = this.handleFetchAccounts.bind(this);
   }
 
   gapiRequest(url) {
