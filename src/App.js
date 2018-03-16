@@ -34,12 +34,16 @@ class App extends Component {
   }
 
   gaData() {
-    let gaAccounts = {}
+    let gaAccounts = []
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
     .then((accountsResponse) => {
       console.log('Accounts:', accountsResponse);
       accountsResponse.data.items.map(item => {
-        gaAccounts = Object.assign(gaAccounts, { name: item.name, id: item.id })
+        let account = {
+          name: item.name,
+          id: item.id
+        }
+        gaAccounts.push(account);
       })
       console.log("hereee", gaAccounts);
       gaAccounts.forEach((account) => {
