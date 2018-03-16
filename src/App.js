@@ -34,26 +34,6 @@ class App extends Component {
     console.log(err);
   }
 
-  handleFetchAccounts(accounts) {
-    this.setState({
-      accounts
-    }, this.handleFetchProperties(this.state.accounts));
-  }
-
-  handleFetchProperties(properties) {
-    this.state.accounts.map(item => {
-      this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts/' + item.id + '/webproperties')
-        .then((res) => this.setState({
-          properties: res.data.items.map(item => ({
-            name: item.name,
-            id: item.id,
-            accountId: item.accountId
-          }))
-        })
-        )
-    })
-  }
-
   gaData() {
     let gaAccounts
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
