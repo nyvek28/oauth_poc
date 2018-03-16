@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   gaData() {
-    let gaAccounts
+    let gaAccounts = {}
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
     .then((accountsResponse) => {
       console.log('Accounts:', accountsResponse);
