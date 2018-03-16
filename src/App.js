@@ -95,6 +95,11 @@ class App extends Component {
           </button>
           : null
         }
+        <p>Accounts: </p>
+        <select>
+          <option>hey</option>
+          <option>test</option>
+        </select>
       </div>
     );
   }
