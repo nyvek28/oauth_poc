@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       user: '',
       accounts: [],
-      properties: []
+      properties: [],
+      views: []
     }
   }
 
@@ -37,7 +38,7 @@ class App extends Component {
     let gaAccounts = []
     this.gapiRequest('https://www.googleapis.com/analytics/v3/management/accounts')
     .then((accountsResponse) => {
-      console.log('Accounts:', accountsResponse);
+      this.setState({ accounts: accountsResponse.data });
       accountsResponse.data.items.map(item => {
         let account = {
           name: item.name,
@@ -48,12 +49,13 @@ class App extends Component {
       gaAccounts.forEach((account) => {
         this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties`)
         .then((propertiesResponse) => {
-          console.log('Properties:', propertiesResponse);
+          this.setState({ properties: propertiesResponse.data })
           propertiesResponse.data.items.forEach((property) => {
             this.gapiRequest(`https://www.googleapis.com/analytics/v3/management/accounts/${account.id}/webproperties/${property.id}/profiles`)
             .then((viewsResponse) => {
-              console.log('Views:', viewsResponse);
+              this.setState({ views: viewsResponse.data })
             })
+            .then(console.log(this.state))
           })
         })
       })
